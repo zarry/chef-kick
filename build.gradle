@@ -30,12 +30,3 @@ packaging {
 debian {
     dependsOn stage
 }
-
-rpm {
-    dependsOn stage
-}
-
-task build {
-    group "build"
-    dependsOn debian, rpm
-}
