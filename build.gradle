@@ -24,7 +24,7 @@ task stage(type: Copy) {
 
 packaging {
     //baseDir = "build/stagedPackage"
-    extraOptions = ["--vendor": "CommerceHub", "--maintainer": "David M. Carr"]
+    extraOptions = ["--vendor": "CommerceHub", "--maintainer": "David M. Carr", "--version": version]
 }
 
 debian {
