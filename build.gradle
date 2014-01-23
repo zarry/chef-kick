@@ -14,23 +14,16 @@ executables {
     "chef-kick" {}
 }
 
-task buildAllExecutables {
-    group "build"
-    dependsOn binaries.withType(ExecutableBinary).matching {
-        it.buildable
-    }
-}
-
 task stage(type: Copy) {
     group "build"
     description "Assembles the package structure"
-    dependsOn buildAllExecutables
+    dependsOn "chef-kickExecutable"
     from "build/binaries/chef-kickExecutable"
     into "build/stagedPackage/usr/bin"
 }
 
 packaging {
-    baseDir = "build/stagedPackage"
+    //baseDir = "build/stagedPackage"
     extraOptions = ["--vendor": "CommerceHub", "--maintainer": "David M. Carr"]
 }
 
