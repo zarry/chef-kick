@@ -29,7 +29,7 @@ packaging {
         "--maintainer": "David M. Carr",
         "--version": version,
         "--license": "Apache License, Version 2.0",
-        "--description": "A wrapper script to invoke chef-client --once"
+        "--description": "A wrapper script to invoke 'chef-client --once'"
     ]
 }
 
