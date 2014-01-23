@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.kenshoo:gradle-fpm:0.4"
+    }
+}
+
+apply plugin: "c"
+apply plugin: "fpm-packaging"
+
+executables {
+    "chef-kick" {}
+}
+
+task buildAllExecutables {
+    group "build"
+    dependsOn binaries.withType(ExecutableBinary).matching {
+        it.buildable
+    }
+}
+
+task stage(type: Copy) {
+    group "build"
+    description "Assembles the package structure"
+    dependsOn buildAllExecutables
+    from "build/binaries/chef-kickExecutable"
+    into "build/stagedPackage/usr/bin"
+}
+
+packaging {
+    baseDir = "build/stagedPackage"
+    extraOptions = ["--vendor": "CommerceHub", "--maintainer": "David M. Carr"]
+}
+
+debian {
+    dependsOn stage
+}
+
+rpm {
+    dependsOn stage
+}
+
+task build {
+    group "build"
+    dependsOn debian, rpm
+}
