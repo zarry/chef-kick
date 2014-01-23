@@ -18,12 +18,12 @@ task stage(type: Copy) {
     group "build"
     description "Assembles the package structure"
     dependsOn "chef-kickExecutable"
-    from "build/binaries/chef-kickExecutable"
-    into "build/stagedPackage/usr/bin"
+    from "${project.buildDir}/binaries/chef-kickExecutable"
+    into "${project.buildDir}/stagedPackage/usr/bin"
 }
 
 packaging {
-    //baseDir = "build/stagedPackage"
+    baseDir = "${project.buildDir}/stagedPackage"
     extraOptions = [
         "--vendor": "CommerceHub",
         "--maintainer": "David M. Carr",
