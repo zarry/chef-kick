@@ -5,5 +5,5 @@
 
 int main() {
    setuid(0);
-   return system("chef-client --once");
+   return system("/usr/bin/chef-client --once");
 }
